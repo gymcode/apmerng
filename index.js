@@ -3,15 +3,34 @@ const gql = require('graphql-tag');
 const mongoose = require('mongoose')
 const {MONGODB} = require('./config')
 
+//database stuff
+const Post = require('./Database/post')
+const User = require('./Database/user')
+
 const typeDefs = gql `
+    type Post {
+        id: ID!, 
+        body: String!
+        username: String!
+        createdAt: String!, 
+    }
+
     type Query {
-        sayHello: String!
+        getPosts: [Post]
     }
 `
 
 const resolvers = {
     Query: {
-        sayHello: () => "Hello world"
+        getPosts: async()=>{
+            try {
+                const posts = await Post.find()
+                console.log(posts)
+                return posts;
+            } catch (error) {
+                throw new Error(error)
+            }
+        }
     }
 }
 
