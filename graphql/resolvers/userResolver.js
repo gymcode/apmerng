@@ -11,7 +11,7 @@ module.exports = {
             // checking if user already exists
             const userCheck = await User.findOne({email})
             if (userCheck) {
-                
+                throw new Error("email already exits")
             }
             // hashing the user's password 
             password = await bcrypt.hash(password, SALT)
