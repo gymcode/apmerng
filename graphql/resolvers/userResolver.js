@@ -16,7 +16,7 @@ module.exports = {
                 username, 
                 email, 
                 password, 
-                createdAt: new Date.toString()
+                createdAt: new Date().toString()
             })
 
             const data = await newUser.save()
@@ -26,11 +26,11 @@ module.exports = {
                 id: data.id, 
                 username: data.username, 
                 email: data.email
-            }, SECRET)
+            }, SECRET, {expiresIn: "1h"})
 
             return {
-                ...res._doc, 
-                id: _id,
+                ...data._doc, 
+                id: data._id,
                 token
             }
         }
