@@ -7,4 +7,4 @@ const userSchema = new Schema({
     createdAt: String
 })
 
-module.export = model('user', userSchema)
+module.exports = model('users', userSchema)
