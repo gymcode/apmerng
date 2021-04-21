@@ -9,6 +9,10 @@ module.exports = {
         register: async (_, {registerUser: {username, email, password, confirmPassword}})=>{
             // user validation 
             // checking if user already exists
+            const userCheck = await User.findOne({email})
+            if (userCheck) {
+                
+            }
             // hashing the user's password 
             password = await bcrypt.hash(password, SALT)
 
