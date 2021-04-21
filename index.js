@@ -7,31 +7,10 @@ const {MONGODB} = require('./config')
 const Post = require('./Database/post')
 const User = require('./Database/user')
 
-const typeDefs = gql `
-    type Post {
-        id: ID!, 
-        body: String!
-        username: String!
-        createdAt: String!, 
-    }
-
-    type Query {
-        getPosts: [Post]
-    }
-`
+const typeDefs = require('./graphql/typeDefs')
 
 const resolvers = {
-    Query: {
-        getPosts: async()=>{
-            try {
-                const posts = await Post.find()
-                console.log(posts)
-                return posts;
-            } catch (error) {
-                throw new Error(error)
-            }
-        }
-    }
+   
 }
 
 // creating our server
