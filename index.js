@@ -1,5 +1,6 @@
 const {ApolloServer} = require('apollo-server')
-const gql = require('graphql-tag')
+const gql = require('graphql-tag'); 
+const mongoose = require('mongoose')
 
 
 const typeDefs = gql `
@@ -19,6 +20,9 @@ const server = new ApolloServer({
     typeDefs: typeDefs, 
     resolvers: resolvers
 })
+
+// creating a database connection 
+mongoose.connect()
 
 server.listen({port:  5000})
     .then((res)=>{
