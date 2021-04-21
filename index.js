@@ -9,9 +9,7 @@ const User = require('./Database/user')
 
 const typeDefs = require('./graphql/typeDefs')
 
-const resolvers = {
-   
-}
+const resolvers = require('./graphql/resolvers/index')
 
 // creating our server
 const server = new ApolloServer({
