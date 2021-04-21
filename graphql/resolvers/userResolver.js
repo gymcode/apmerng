@@ -2,6 +2,8 @@ const User = require('../../Database/user')
 const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
 
+const {UserInputError} = require('apollo-server')
+
 const { SALT, SECRET } = require('../../config')
 
 module.exports = {
@@ -11,7 +13,9 @@ module.exports = {
             // checking if user already exists
             const userCheck = await User.findOne({email})
             if (userCheck) {
-                throw new Error("email already exits")
+                throw new UserInputError("User already exists", {
+                    error: "email already in use please try another"
+                })
             }
             // hashing the user's password 
             password = await bcrypt.hash(password, SALT)
