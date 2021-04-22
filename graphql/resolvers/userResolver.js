@@ -12,6 +12,7 @@ module.exports = {
             // user validation 
             const {errors, valid} = ValidateRegisterInput(username, email, password, confirmPassword)
             console.log(valid)
+            console.log(errors)
             if (!valid) {
                 throw new UserInputError("User Errors", {errors})
             }
