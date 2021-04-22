@@ -57,7 +57,21 @@ module.exports = {
                 })
             }
             // compare password
-            const 
+            const passMatch = await bcrypt.compare(password, emailCheck.password)
+            if (!passMatch) {
+                throw new UserInputError("Errors", {
+                    error: "Password doesn't match one in db"
+                })
+            }
+
+            const token = GenerateToken(emailCheck)
+
+            return {
+                ...emailCheck._doc, 
+                id: emailCheck._id,
+                token
+            }
+
         }
     }
 }
