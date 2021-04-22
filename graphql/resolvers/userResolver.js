@@ -45,9 +45,19 @@ module.exports = {
 
         login: async (_, {email, password})=>{  
             // user validation
-            const {} = ValidateLoginInput(uemail, password)
+            const {errors, valid} = ValidateLoginInput(email, password)
+            if(!valid){
+                throw new UserInputError('Errors', errors)
+            }
             //check if user exists in the database 
+            const emailCheck = User.findOne({email})
+            if(!emailCheck){
+                throw new UserInputError('Errors', {
+                    error: "email cannot be found in the database"
+                })
+            }
             // compare password
+            const 
         }
     }
 }
