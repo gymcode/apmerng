@@ -1,18 +1,17 @@
 const User = require('../../Database/user')
 const bcrypt = require('bcryptjs')
-const jwt = require('jsonwebtoken')
 
+const GenerateToken
 const {UserInputError} = require('apollo-server')
 const {ValidateRegisterInput} = require('../../utils/validator')
-const { SALT, SECRET } = require('../../config')
+const { SALT } = require('../../config')
 
 module.exports = {
     Mutation: {
         register: async (_, {registerUser: {username, email, password, confirmPassword}})=>{
             // user validation 
             const {errors, valid} = ValidateRegisterInput(username, email, password, confirmPassword)
-            console.log(valid)
-            console.log(errors)
+
             if (!valid) {
                 throw new UserInputError("User Errors", {errors})
             }
@@ -36,11 +35,7 @@ module.exports = {
             const data = await newUser.save()
             console.log(data)
 
-            const token = jwt.sign({
-                id: data.id, 
-                username: data.username, 
-                email: data.email
-            }, SECRET, {expiresIn: "1h"})
+            const token = 
 
             return {
                 ...data._doc, 
