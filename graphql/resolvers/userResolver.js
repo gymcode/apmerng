@@ -41,6 +41,8 @@ module.exports = {
                 id: data._id,
                 token
             }
-        }
+        }, 
+
+        
     }
 }
