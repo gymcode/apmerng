@@ -1,7 +1,7 @@
 const User = require('../../Database/user')
 const bcrypt = require('bcryptjs')
 
-const GenerateToken
+const GenerateToken = require('../../utils/generateToken')
 const {UserInputError} = require('apollo-server')
 const {ValidateRegisterInput} = require('../../utils/validator')
 const { SALT } = require('../../config')
@@ -32,10 +32,9 @@ module.exports = {
                 createdAt: new Date().toString()
             })
 
-            const data = await newUser.save()
-            console.log(data)
+            const data = await newUser.save()        
 
-            const token = 
+            const token = GenerateToken(data)
 
             return {
                 ...data._doc, 
