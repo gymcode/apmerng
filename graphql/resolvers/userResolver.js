@@ -3,7 +3,7 @@ const bcrypt = require('bcryptjs')
 
 const GenerateToken = require('../../utils/generateToken')
 const {UserInputError} = require('apollo-server')
-const {ValidateRegisterInput} = require('../../utils/validator')
+const {ValidateRegisterInput, ValidateLoginInput} = require('../../utils/validator')
 const { SALT } = require('../../config')
 
 module.exports = {
@@ -43,6 +43,11 @@ module.exports = {
             }
         }, 
 
-        
+        login: async (_, {email, password})=>{  
+            // user validation
+            const {} = ValidateLoginInput(uemail, password)
+            //check if user exists in the database 
+            // compare password
+        }
     }
 }
