@@ -51,6 +51,7 @@ module.exports = {
             }
             //check if user exists in the database 
             const emailCheck = User.findOne({email})
+            console.log(emailCheck)
             if(!emailCheck){
                 throw new UserInputError('Errors', {
                     error: "email cannot be found in the database"
@@ -58,6 +59,7 @@ module.exports = {
             }
             // compare password
             const passMatch = await bcrypt.compare(password, emailCheck.password)
+            
             if (!passMatch) {
                 throw new UserInputError("Errors", {
                     error: "Password doesn't match one in db"
