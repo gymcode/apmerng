@@ -19,6 +19,8 @@ module.exports = {
 
                 if (post) {
                     return post;
+                } else{
+                    throw new Error("post either doesn't exist or has been deleted")
                 }
             } catch (error) {
                 throw new Error(error)
