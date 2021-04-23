@@ -1,7 +1,7 @@
 const User = require('../../Database/user')
 const bcrypt = require('bcryptjs')
 
-const GenerateToken = require('../../utils/generateToken')
+const {generateToken} = require('../../utils/generateToken')
 const {UserInputError} = require('apollo-server')
 const {ValidateRegisterInput, ValidateLoginInput} = require('../../utils/validator')
 const { SALT } = require('../../config')
@@ -34,7 +34,7 @@ module.exports = {
 
             const data = await newUser.save()        
 
-            const token = GenerateToken(data)
+            const token = generateToken(data)
 
             return {
                 ...data._doc, 
@@ -50,8 +50,8 @@ module.exports = {
                 throw new UserInputError('Errors', errors)
             }
             //check if user exists in the database 
-            const emailCheck = User.findOne({email})
-            console.log(emailCheck)
+            const emailCheck = await User.findOne({email})
+            
             if(!emailCheck){
                 throw new UserInputError('Errors', {
                     error: "email cannot be found in the database"
@@ -66,8 +66,8 @@ module.exports = {
                 })
             }
 
-            const token = GenerateToken(emailCheck)
-
+            const token = generateToken(emailCheck)
+            
             return {
                 ...emailCheck._doc, 
                 id: emailCheck._id,
