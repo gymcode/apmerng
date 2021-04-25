@@ -1,4 +1,5 @@
 const Post = require('../../Database/post')
+const check_auth = require('../../utils/check-auth')
 
 module.exports = {
     Query: {
@@ -25,6 +26,14 @@ module.exports = {
             } catch (error) {
                 throw new Error(error)
             }
+        }
+    }, 
+    Mutation : {
+        createPost: async(_, {body}, context)=>{
+            const user = check_auth(context)
+
+            console.log(user)
+
         }
     }
 }
