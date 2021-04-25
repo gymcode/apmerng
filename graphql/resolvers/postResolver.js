@@ -34,6 +34,17 @@ module.exports = {
 
             console.log(user)
 
+            const newUser = new Post({
+                body, 
+                id: user.id,
+                username: user.useranme, 
+                createdAt: new Date().toISOString()
+            })
+
+            const post = await newUser.save()
+
+            return post; 
+
         }
     }
 }
