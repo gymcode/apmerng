@@ -30,8 +30,20 @@ module.exports = {
     }, 
 
     Mutation: {
-        createPost: (_)=>{
+        createPost: async(_, {body}, context)=>{
+            const user = check_auth(context)
+            console.log(user); 
 
+            const newPost = new Post({
+                id: user._id, 
+                body, 
+                username: user.username, 
+                createdAt: new Date().toISOString()
+            })
+
+            const post = await newPost.save(); 
+
+            return post
         }
     }
    
