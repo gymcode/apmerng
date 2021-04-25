@@ -28,23 +28,11 @@ module.exports = {
             }
         }
     }, 
-    Mutation : {
-        createPost: async(_, {body}, context)=>{
-            const user = check_auth(context)
 
-            console.log(user)
-
-            const newUser = new Post({
-                body, 
-                id: user.id,
-                username: user.useranme, 
-                createdAt: new Date().toISOString()
-            })
-
-            const post = await newUser.save()
-
-            return post; 
+    Mutation: {
+        createPost: (_)=>{
 
         }
     }
+   
 }

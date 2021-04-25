@@ -19,6 +19,6 @@ module.exports = (context)=>{
             throw new AuthenticationError("Authentication token must be \' Bearer ")
         }
     } else {
-        throw new AuthenticationError("Authentication toke must be provided ")
+        throw new AuthenticationError("Authorization token must be provided ")
     }
 }
