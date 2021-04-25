@@ -31,7 +31,7 @@ module.exports = {
 
     Mutation: {
         createPost: async(_, {body}, context)=>{
-            console.log("Fdsf")
+            
             const user = check_auth(context)
             console.log(user); 
 
