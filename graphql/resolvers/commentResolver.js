@@ -29,17 +29,15 @@ module.exports = {
             return checkPost;
         },  
         deleteComment: async (_, {postID, commentId}, context)=>{
-            const user = check_auth(context)
+            const {username} = check_auth(context)
 
-            try {
-               // check if the post has not been deleted  
-               const post = await Post.findById(postID)
-               if (!post) {
-                   throw new Error("post not available")
-               } 
-               // checking if there's a comment
-            } catch (error) {
-                throw new Error(error)
+            const post = await Post.findById(postID); 
+
+            if (post) {
+                // finding the comment index since it's an array 
+                const commentIndex = post.comments.findIndex(c => c.id === commentId)
+            } else {
+                throw new Error("")
             }
         }
     }
