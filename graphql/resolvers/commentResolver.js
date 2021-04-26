@@ -15,7 +15,7 @@ module.exports = {
             }
             // check if the post already exists
             const checkPost = await Post.findById(postID)
-            
+            console.log(checkPost)
             if (!checkPost) {
                 throw new Error("Post is not available in the database")
             } 
