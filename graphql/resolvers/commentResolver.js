@@ -20,7 +20,11 @@ module.exports = {
                 throw new Error("Post is not available in the database")
             } 
             
-            post
+            checkPost.comment.unshift({
+                body, 
+                username: user.username, 
+                createdAt: new Date().toISOString()
+            })
         }
     }
 }
