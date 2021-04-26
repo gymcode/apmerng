@@ -6,7 +6,6 @@ module.exports = {
         getPosts: async()=>{
             try {
                 const posts = await Post.find()
-                console.log(posts)
                 return posts;
             } catch (error) {
                 throw new Error(error)
@@ -16,7 +15,6 @@ module.exports = {
         getPost: async(_, {postID})=>{
             try {
                 const post = await Post.findById(postID)
-                console.log(post)
 
                 if (post) {
                     return post;
@@ -53,7 +51,7 @@ module.exports = {
             try {
                 // first find the post 
                 const post = await Post.findById(postID)
-                console.log(post)
+
                 // check if the user is the same if the user with the post
                 if (user.username === post.username) {
                     await post.delete(); 
