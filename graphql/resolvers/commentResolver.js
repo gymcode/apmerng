@@ -27,6 +27,20 @@ module.exports = {
             })
             await checkPost.save();
             return checkPost;
+        },  
+        deleteComment: async (_, {postID, commentId}, context)=>{
+            const user = check_auth(context)
+
+            try {
+               // check if the post has not been deleted  
+               const post = await Post.findById(postID)
+               if (!post) {
+                   throw new Error("post not available")
+               } 
+               
+            } catch (error) {
+                throw new Error(error)
+            }
         }
     }
 }
