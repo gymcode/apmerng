@@ -45,6 +45,25 @@ module.exports = {
             const post = await newPost.save(); 
 
             return post;
+        }, 
+
+        deletePost: async(_, {postID}, context)=>{
+            // middleware
+            const user = check_auth(context)
+
+            try {
+                // first find the post 
+                const post = await Post.findById(postID)
+                // check if the user is the same if the user with the post
+                if (user.id === post.username) {
+                    await post.delete(); 
+                    return "Post delete successfully"
+                }else {
+                    throw new Error("Action not allowed")
+                }              
+            } catch (error) {
+                throw new Error(error)
+            }
         }
     }
    
