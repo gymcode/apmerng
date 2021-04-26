@@ -43,3 +43,16 @@ module.exports.ValidateLoginInput = (email, password)=>{
         valid: Object.keys(errors).length < 1
     }
 }
+
+module.exports.ValidateComment = (body)=>{
+    const errors = {}
+
+    if (body.trim() == "" ) {
+        errors.body = "empty comments, please provide a comment for the post"
+    }
+
+    return {
+        errors, 
+        valid: Object.keys(errors).length < 1
+    }
+}
