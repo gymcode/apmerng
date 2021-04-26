@@ -37,7 +37,7 @@ module.exports = {
                if (!post) {
                    throw new Error("post not available")
                } 
-               
+               // checking if there's a comment
             } catch (error) {
                 throw new Error(error)
             }
