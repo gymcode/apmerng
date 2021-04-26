@@ -36,6 +36,11 @@ module.exports = {
             if (post) {
                 // finding the comment index since it's an array 
                 const commentIndex = post.comments.findIndex(c => c.id === commentId)
+
+                //checking if the user deleting the comment is the actual user
+                if (post.comments[commentIndex].username === username) {
+                    
+                }
             } else {
                 throw new Error("")
             }
