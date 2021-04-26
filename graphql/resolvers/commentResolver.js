@@ -39,10 +39,12 @@ module.exports = {
 
                 //checking if the user deleting the comment is the actual user
                 if (post.comments[commentIndex].username === username) {
-                    
+                    post.comments.splice(commentIndex, 1)
+                    await post.save();
+                    return post;
                 }
             } else {
-                throw new Error("")
+                throw new Error("this is error and you know")
             }
         }
     }
