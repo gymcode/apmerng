@@ -15,16 +15,18 @@ module.exports = {
             }
             // check if the post already exists
             const checkPost = await Post.findById(postID)
-
+            
             if (!checkPost) {
                 throw new Error("Post is not available in the database")
             } 
             
-            checkPost.comment.unshift({
+            checkPost.comments.unshift({
                 body, 
                 username: user.username, 
                 createdAt: new Date().toISOString()
             })
+            await checkPost.save();
+            return checkPost;
         }
     }
 }

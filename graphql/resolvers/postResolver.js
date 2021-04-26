@@ -33,7 +33,6 @@ module.exports = {
         createPost: async(_, {body}, context)=>{
             
             const user = check_auth(context)
-            console.log(user); 
 
             const newPost = new Post({        
                 user: user.id,
@@ -50,7 +49,6 @@ module.exports = {
         deletePost: async(_, {postID}, context)=>{
             // middleware
             const user = check_auth(context)
-            console.log(user);
 
             try {
                 // first find the post 
