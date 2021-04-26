@@ -35,8 +35,8 @@ module.exports = {
             const user = check_auth(context)
             console.log(user); 
 
-            const newPost = new Post({
-                id: user._id, 
+            const newPost = new Post({        
+                user: user.id,
                 body, 
                 username: user.username, 
                 createdAt: new Date().toISOString()

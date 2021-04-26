@@ -4,15 +4,15 @@ const { SECRET } = require('../config')
 
 module.exports = (context)=>{
     
-    const authheader = context.req.headers.authorization; 
+    const authHeader = context.req.headers.authorization;
     
-    if (authheader) {
-        const Token = authheader.split('Bearer ')[1]
+    if (authHeader) {
+        const Token = authHeader.split('Bearer ')[1]
         console.log(Token)
         if (Token) {
             try {
                 const user = jwt.verify(Token, SECRET)
-                return user
+                return user;
             } catch (error) {
                 throw new AuthenticationError("invalid/expired token")
             }
