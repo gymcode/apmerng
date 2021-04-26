@@ -50,14 +50,16 @@ module.exports = {
         deletePost: async(_, {postID}, context)=>{
             // middleware
             const user = check_auth(context)
+            console.log(user);
 
             try {
                 // first find the post 
                 const post = await Post.findById(postID)
+                console.log(post)
                 // check if the user is the same if the user with the post
-                if (user.id === post.username) {
+                if (user.username === post.username) {
                     await post.delete(); 
-                    return "Post delete successfully"
+                    return true;
                 }else {
                     throw new Error("Action not allowed")
                 }              
